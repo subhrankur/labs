@@ -1,0 +1,41 @@
+Router :		
+
+aaa new-model
+aaa authentication login default group tacacs+ local 
+tacacs-server host 192.168.1.5
+tacacs-server key cisco123
+line vty 0 4
+login authentication default
+exit
+do write memory
+username Admin password admin
+
+Server:
+
+AAA:
+
+Network configuration:
+
+CLIENT NAME: Router
+Client IP: Default Gateway
+ServerType: TACACS
+secretKey:cisco123
+
+user setup:
+
+username:Admin
+password:admin
+
+
+pc1:
+
+telnet 192.168.1.1
+
+username:Admin
+password: admin
+
+Router> en
+
+
+
+ 

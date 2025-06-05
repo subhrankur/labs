@@ -1,0 +1,41 @@
+Diffie-Helmen
+import random
+p = 23
+g = 5
+a = random.randint(1, p-2)
+A = pow(g, a, p)
+b = random.randint(1, p-2)
+B = pow(g, b, p)
+shared_key_alice = pow(B, a, p)
+shared_key_bob = pow(A, b, p)
+print(f"Alice's Private Key: {a}")
+print(f"Bob's Private Key: {b}")
+print(f"Alice's Public Key (A): {A}")
+print(f"Bob's Public Key (B): {B}")
+print(f"Shared Key at Alice: {shared_key_alice}")
+print(f"Shared Key at Bob: {shared_key_bob}")
+print("Key exchange successful:", shared_key_alice == shared_key_bob)
+
+
+Digital-Signatue
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives import serialization
+private_key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+public_key = private_key.public_key()
+message = b"This is a secure message from Alice."
+signature = private_key.sign(
+    message,
+    padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.MAX_LENGTH),
+    hashes.SHA256()
+)
+try:
+    public_key.verify(
+        signature,
+        message,
+        padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.MAX_LENGTH),
+        hashes.SHA256()
+    )
+    print("Authentication successful: Signature is valid.")
+except Exception as e:
+    print("Authentication failed: Signature is invalid.")

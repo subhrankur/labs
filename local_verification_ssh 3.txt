@@ -1,0 +1,23 @@
+cli cmd router :-
+exit
+hostname CNSRouter
+enable secret cisco
+ip domain-name cisco.com
+username Admin secret cisco
+crypto key generate rsa
+1024
+line vty 0 15
+login local
+transport input ssh
+ip ssh version 2
+exit
+write memory
+
+
+cli cmd  pc
+ssh -l Admin 192.168.1.1
+password = cisco
+en 
+password cisco
+config t
+

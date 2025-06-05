@@ -1,0 +1,29 @@
+SWITCH:
+
+en
+config t
+line vty 0 5
+login local
+enable secret cisco123
+username admin1 password cisco                                   
+exit
+
+ROUTER:
+
+exit
+line vty 0 5
+login local
+enable secret cisco123
+username admin1 password cisco                                   
+
+
+PC 1:
+
+telnet 192.168.1.1
+username: admin1
+password:cisco
+
+router:
+en
+password:cisco123
+>>config t
