@@ -1,0 +1,46 @@
+Router :		
+
+aaa new-model
+aaa authentication login default group tacacs+ local 
+tacacs-server host 192.168.1.4
+tacacs-server key cisco123
+hostname Router1
+enable password cisco
+ip domain-name cisco.com
+crypto key generate rsa
+how may bits in the module : 1024
+line vty 0 4
+login authentication default
+exit
+ip ssh version 2
+
+Server:
+
+AAA:
+
+Network configuration:
+
+CLIENT NAME: Router
+Client IP: Default Gateway
+ServerType: TACACS
+secretKey:cisco123
+
+user setup:
+
+username:Admin1
+password:admin
+username:Admin2
+password:admin
+
+pc1:
+
+ssh -l Admin1 192.168.1.4
+password: admin
+
+Router> en
+password:cisco
+
+
+
+ 
+ 
