@@ -1,0 +1,13 @@
+router 1
+access-list 5 deny host 200.100.10.2
+access-list 5 permit any
+access-list 5 deny host 200.100.10.2
+interface gig0/0
+ip access-group 5 in
+
+router 2
+same as router 1
+
+go to any pc
+
+ping 210.100.10.2
